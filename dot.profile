@@ -1,12 +1,6 @@
-#
 # .profile - Bourne Shell startup script for login shells
-#
-# see also sh(1), environ(7).
-#
 
-# These are normally set through /etc/login.conf.  You may override them here
-# if wanted.
-# PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/bin; export PATH
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin; export PATH
 
 # Setting TERM is normally done through /etc/ttys.  Do only override
 # if you're sure that you'll never log in via telnet or xterm or a
@@ -27,3 +21,4 @@ if [ -x /usr/bin/resizewin ] ; then /usr/bin/resizewin -z ; fi
 
 # Display a random cookie on each login.
 if [ -x /usr/bin/fortune ] ; then /usr/bin/fortune freebsd-tips ; fi
+if [ -x /usr/games/fortune ] ; then /usr/games/fortune ; fi
