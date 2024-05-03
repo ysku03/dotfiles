@@ -16,12 +16,20 @@ if ( $?prompt ) then
   set filec
   set history = 1000
   set savehist = (1000 merge)
-  set mail = (/var/mail/$USER)
+  if ( $OSTYPE != 'linux' ) then
+    set mail = (/var/mail/$USER)
+  endif
   if ( $?tcsh ) then
     set autoexpand
     set autolist = ambiguous
     set autorehash
-    set prompt = "%n@%m($OSTYPE):%~ %# "
+    if ( $OSTYPE == 'linux' ) then
+      set dist = `cat /etc/os-release | awk -F'["]' 'NR==1{print $2}' | awk '{print $1}'`
+
+      set prompt = "%n@%m($dist):%~ %# "
+    else
+      set prompt = "%n@%m($OSTYPE):%~ %# "
+    endif
     set promptchars = "%#"
     bindkey "^W" backward-delete-word
     bindkey -k up history-search-backward
@@ -29,5 +37,5 @@ if ( $?prompt ) then
   else
     set prompt = "`whoami`@`hotname -s`% "
   endif
-  umask 022
+  umask 002
 endif
